@@ -1,53 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hello World 2.0 CTF</title>
 <style>
-  body { font-family: system-ui, sans-serif; max-width: 640px; margin: 0 auto; padding: 16px; line-height: 1.5; }
-  h2 { margin-top: 28px; border-bottom: 2px solid #2b3595; }
-  p { margin: 12px 0 2px; }
-  code { word-break: break-all; background: #eef; padding: 1px 4px; }
-  details { color: #555; margin-bottom: 8px; }
+  :root {
+    --navy: #2b3595;
+    --navy-light: #5c66cc;
+    --bg: #f3f4fa;
+    --card: #ffffff;
+    --text: #1c2040;
+    --muted: #5b6080;
+    --crypto: #2b3595;
+    --web: #0f7b6c;
+    --forensics: #b4531c;
+    --bonus: #8a3fa8;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; line-height: 1.5; }
+  header { background: var(--navy); color: #fff; padding: 22px 16px 18px; text-align: center; }
+  header h1 { margin: 0; font-size: 1.7rem; letter-spacing: .02em; }
+  header p { margin: 6px auto 0; max-width: 34rem; font-size: .95rem; opacity: .9; }
+  main { max-width: 640px; margin: 0 auto; padding: 16px; }
+
+  /* Tabs: hidden radio buttons + labels, no JavaScript */
+  .tabs input { position: absolute; opacity: 0; pointer-events: none; }
+  .tabbar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 16px; }
+  .tabbar label { text-align: center; padding: 10px 4px; border-radius: 10px; background: #fff; border: 2px solid #d8dbef; font-weight: 600; font-size: .9rem; cursor: pointer; color: var(--muted); }
+  .panel { display: none; }
+  #t-crypto:checked ~ .tabbar label[for="t-crypto"] { background: var(--crypto); border-color: var(--crypto); color: #fff; }
+  #t-web:checked ~ .tabbar label[for="t-web"] { background: var(--web); border-color: var(--web); color: #fff; }
+  #t-forensics:checked ~ .tabbar label[for="t-forensics"] { background: var(--forensics); border-color: var(--forensics); color: #fff; }
+  #t-bonus:checked ~ .tabbar label[for="t-bonus"] { background: var(--bonus); border-color: var(--bonus); color: #fff; }
+  #t-crypto:checked ~ #p-crypto,
+  #t-web:checked ~ #p-web,
+  #t-forensics:checked ~ #p-forensics,
+  #t-bonus:checked ~ #p-bonus { display: block; }
+  .tabs input:focus-visible ~ .tabbar label { outline: none; }
+  #t-crypto:focus-visible ~ .tabbar label[for="t-crypto"],
+  #t-web:focus-visible ~ .tabbar label[for="t-web"],
+  #t-forensics:focus-visible ~ .tabbar label[for="t-forensics"],
+  #t-bonus:focus-visible ~ .tabbar label[for="t-bonus"] { outline: 3px solid #f2b705; outline-offset: 2px; }
+
+  .card { background: var(--card); border-radius: 12px; padding: 14px 16px; margin-bottom: 12px; border-left: 6px solid var(--accent); box-shadow: 0 1px 3px rgba(20, 25, 60, .08); }
+  #p-crypto { --accent: var(--crypto); }
+  #p-web { --accent: var(--web); }
+  #p-forensics { --accent: var(--forensics); }
+  #p-bonus { --accent: var(--bonus); }
+  .top { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+  .pts { background: var(--accent); color: #fff; font-weight: 700; border-radius: 999px; padding: 2px 12px; font-size: .9rem; }
+  .code { color: var(--muted); font-size: .85rem; font-weight: 600; }
+  .card p { margin: 4px 0; }
+  code { display: inline-block; max-width: 100%; word-break: break-all; background: #eef0fb; padding: 2px 6px; border-radius: 4px; font-size: .95rem; }
+  .card a { color: var(--accent); font-weight: 600; }
+  details { margin-top: 6px; color: var(--muted); font-size: .92rem; }
+  summary { cursor: pointer; font-weight: 600; }
+  .note { text-align: center; color: var(--muted); font-size: .85rem; margin-top: 20px; }
 </style>
+</head>
+<body>
+<header>
+  <h1>Hello World 2.0 CTF</h1>
+  <p>Pick any challenge, solve it, and write what you find in that box on your team's sheet.</p>
+</header>
 
-<h1>Hello World 2.0 CTF</h1>
-<p>Pick any challenge, solve it, and write what you find in that box on your team's sheet. Tap <b>Hint</b> if you're stuck.</p>
+<main class="tabs">
+  <input type="radio" name="tab" id="t-crypto" checked>
+  <input type="radio" name="tab" id="t-web">
+  <input type="radio" name="tab" id="t-forensics">
+  <input type="radio" name="tab" id="t-bonus">
 
-<h2>Crypto</h2>
-<p><b>C100.</b> Decode: <code>U0VDUkVU</code></p>
-<details><summary>Hint</summary>Use From Base64 in CyberChef.</details>
-<p><b>C200.</b> Every letter moved forward 3: <code>FBEHU</code></p>
-<details><summary>Hint</summary>Move each letter back 3 (F becomes C).</details>
-<p><b>C300.</b> Decode: <code>6b6579</code></p>
-<details><summary>Hint</summary>Only 0-9 and a-f means hex. Use From Hex.</details>
-<p><b>C400.</b> Decode: <code>-.-. .-.. ..- .</code></p>
-<details><summary>Hint</summary>It's Morse code. Use a Morse chart or From Morse Code.</details>
-<p><b>C500.</b> Decode: <code>5445465a52564a54</code></p>
-<details><summary>Hint</summary>Two steps: From Hex, then From Base64.</details>
+  <nav class="tabbar">
+    <label for="t-crypto">Crypto</label>
+    <label for="t-web">Web</label>
+    <label for="t-forensics">Forensics</label>
+    <label for="t-bonus">Bonus</label>
+  </nav>
 
-<h2>Web</h2>
-<p><b>W100.</b> <a href="web100.html">CS Society Notice Board</a></p>
-<details><summary>Hint</summary>Some text is invisible. Use Find in page and search for TechFest.</details>
-<p><b>W200.</b> Search engines are told to skip one page on this site.</p>
-<details><summary>Hint</summary>Add /robots.txt to the end of this site's address.</details>
-<p><b>W300.</b> <a href="web300.html">About the website</a></p>
-<details><summary>Hint</summary>Read the small print, then add that file name to the site's address.</details>
-<p><b>W400.</b> <a href="report-1.html">Lab report</a></p>
-<details><summary>Hint</summary>It says 1 of 3. Change the number in the address.</details>
-<p><b>W500.</b> <a href="web500.html">Nothing to see here</a></p>
-<details><summary>Hint</summary>Look at the name of the browser tab. On a phone, open your tabs view.</details>
+  <section class="panel" id="p-crypto">
+    <div class="card"><div class="top"><span class="pts">100</span><span class="code">C100</span></div>
+      <p>Decode: <code>U0VDUkVU</code></p>
+      <details><summary>Hint</summary>Use From Base64 in CyberChef.</details></div>
+    <div class="card"><div class="top"><span class="pts">200</span><span class="code">C200</span></div>
+      <p>Every letter moved forward 3: <code>FBEHU</code></p>
+      <details><summary>Hint</summary>Move each letter back 3 (F becomes C).</details></div>
+    <div class="card"><div class="top"><span class="pts">300</span><span class="code">C300</span></div>
+      <p>Decode: <code>6b6579</code></p>
+      <details><summary>Hint</summary>Only 0-9 and a-f means hex. Use From Hex.</details></div>
+    <div class="card"><div class="top"><span class="pts">400</span><span class="code">C400</span></div>
+      <p>Decode: <code>-.-. .-.. ..- .</code></p>
+      <details><summary>Hint</summary>It's Morse code. Use a Morse chart or From Morse Code.</details></div>
+    <div class="card"><div class="top"><span class="pts">500</span><span class="code">C500</span></div>
+      <p>Decode: <code>5445465a52564a54</code></p>
+      <details><summary>Hint</summary>Two steps: From Hex, then From Base64.</details></div>
+  </section>
 
-<h2>Forensics</h2>
-<p><b>F100.</b> <a href="photo.png">Campus photo</a></p>
-<details><summary>Hint</summary>Something tiny is hiding. Zoom into the corners.</details>
-<p><b>F200.</b> <a href="dark.png">Dark image</a></p>
-<details><summary>Hint</summary>Save it, then turn brightness, exposure and contrast all the way up.</details>
-<p><b>F300.</b> <a href="code.png">Found on the server</a></p>
-<details><summary>Hint</summary>Scan it with Google Lens or a teammate's camera.</details>
-<p><b>F400.</b> <a href="backwards.png">Backwards message</a></p>
-<details><summary>Hint</summary>Flip the image in a photo editor.</details>
-<p><b>F500.</b> <a href="beeps.wav">The server is beeping</a></p>
-<details><summary>Hint</summary>Short beep = dot, long beep = dash. Use a Morse chart.</details>
+  <section class="panel" id="p-web">
+    <div class="card"><div class="top"><span class="pts">100</span><span class="code">W100</span></div>
+      <p><a href="web100.html">CS Society Notice Board</a></p>
+      <details><summary>Hint</summary>Some text is invisible. Use Find in page and search for TechFest.</details></div>
+    <div class="card"><div class="top"><span class="pts">200</span><span class="code">W200</span></div>
+      <p>Search engines are told to skip one page on this site.</p>
+      <details><summary>Hint</summary>Add /robots.txt to the end of this site's address.</details></div>
+    <div class="card"><div class="top"><span class="pts">300</span><span class="code">W300</span></div>
+      <p><a href="web300.html">About the website</a></p>
+      <details><summary>Hint</summary>Read the small print, then add that file name to the site's address.</details></div>
+    <div class="card"><div class="top"><span class="pts">400</span><span class="code">W400</span></div>
+      <p><a href="report-1.html">Lab report</a></p>
+      <details><summary>Hint</summary>It says 1 of 3. Change the number in the address.</details></div>
+    <div class="card"><div class="top"><span class="pts">500</span><span class="code">W500</span></div>
+      <p><a href="web500.html">Nothing to see here</a></p>
+      <details><summary>Hint</summary>Look at the name of the browser tab. On a phone, open your tabs view.</details></div>
+  </section>
 
-<h2>Bonus (50 each)</h2>
-<p><b>B100.</b> A fake email tricks you into clicking a link.</p>
-<p><b>B200.</b> The "M" in MFA.</p>
-<p><b>B300.</b> Malware that locks your files
+  <section class="panel" id="p-forensics">
+    <div class="card"><div class="top"><span class="pts">100</span><span class="code">F100</span></div>
+      <p><a href="photo.png">Campus photo</a></p>
+      <details><summary>Hint</summary>Something tiny is hiding. Zoom into the corners.</details></div>
+    <div class="card"><div class="top"><span class="pts">200</span><span class="code">F200</span></div>
+      <p><a href="dark.png">Dark image</a></p>
+      <details><summary>Hint</summary>Save it, then turn brightness, exposure and contrast all the way up.</details></div>
+    <div class="card"><div class="top"><span class="pts">300</span><span class="code">F300</span></div>
+      <p><a href="code.png">Found on the server</a></p>
+      <details><summary>Hint</summary>Scan it with Google Lens or a teammate's camera.</details></div>
+    <div class="card"><div class="top"><span class="pts">400</span><span class="code">F400</span></div>
+      <p><a href="backwards.png">Backwards message</a></p>
+      <details><summary>Hint</summary>Flip the image in a photo editor.</details></div>
+    <div class="card"><div class="top"><span class="pts">500</span><span class="code">F500</span></div>
+      <p><a href="beeps.wav">The server is beeping</a></p>
+      <details><summary>Hint</summary>Short beep = dot, long beep = dash. Use a Morse chart.</details></div>
+  </section>
+
+  <section class="panel" id="p-bonus">
+    <div class="card"><div class="top"><span class="pts">50</span><span class="code">B100</span></div>
+      <p>A fake email tricks you into clicking a link.</p></div>
+    <div class="card"><div class="top"><span class="pts">50</span><span class="code">B200</span></div>
+      <p>The "M" in MFA.</p></div>
+    <div class="card"><div class="top"><span class="pts">50</span><span class="code">B300</span></div>
+      <p>Malware that locks your files and demands payment.</p></div>
+    <div class="card"><div class="top"><span class="pts">50</span><span class="code">B400</span></div>
+      <p>A security "wall" that blocks unwanted network traffic.</p></div>
+    <div class="card"><div class="top"><span class="pts">50</span><span class="code">B500</span></div>
+      <p>Harmful software named after a Greek wooden horse.</p></div>
+  </section>
+
+  <p class="note">Stuck? Tap a hint or ask a helper.</p>
+</main>
+</body>
+</html>
