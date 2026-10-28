@@ -6,21 +6,22 @@
 <title>Hello World 2.0 CTF</title>
 <style>
   :root {
-    --navy: #2b3595;
-    --navy-light: #5c66cc;
-    --bg: #f3f4fa;
+    --navy: #000000;
+    --navy-light: #9cc8f5;
+    --bg: #eef3fb;
     --card: #ffffff;
-    --text: #1c2040;
-    --muted: #5b6080;
-    --crypto: #2b3595;
-    --web: #0f7b6c;
-    --forensics: #b4531c;
-    --bonus: #8a3fa8;
+    --text: #1a1446;
+    --muted: #55608a;
+    --crypto: #22106a;
+    --web: #22106a;
+    --forensics: #22106a;
+    --bonus: #22106a;
   }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; line-height: 1.5; }
   header { background: var(--navy); color: #fff; padding: 22px 16px 18px; text-align: center; }
-  header h1 { margin: 0; font-size: 1.7rem; letter-spacing: .02em; }
+  header img { display: block; width: 100%; max-width: 170px; height: auto; margin: 0 auto 10px; }
+  header h1 { margin: 0; font-size: 1.7rem; letter-spacing: .02em; color: var(--navy-light); }
   header p { margin: 6px auto 0; max-width: 34rem; font-size: .95rem; opacity: .9; }
   main { max-width: 640px; margin: 0 auto; padding: 16px; }
  
@@ -52,7 +53,7 @@
   .pts { background: var(--accent); color: #fff; font-weight: 700; border-radius: 999px; padding: 2px 12px; font-size: .9rem; }
   .code { color: var(--muted); font-size: .85rem; font-weight: 600; }
   .card p { margin: 4px 0; }
-  code { display: inline-block; max-width: 100%; word-break: break-all; background: #eef0fb; padding: 2px 6px; border-radius: 4px; font-size: .95rem; }
+  code { display: inline-block; max-width: 100%; word-break: break-all; background: #e3ecfa; padding: 2px 6px; border-radius: 4px; font-size: .95rem; }
   .card a { color: var(--accent); font-weight: 600; }
   details { margin-top: 6px; color: var(--muted); font-size: .92rem; }
   summary { cursor: pointer; font-weight: 600; }
@@ -61,6 +62,7 @@
 </head>
 <body>
 <header>
+  <img src="logo.jpg" alt="TechFest 2026">
   <h1>Hello World 2.0 CTF</h1>
   <p>Pick any challenge, solve it, and write what you find in that box on your team's sheet.</p>
 </header>
